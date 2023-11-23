@@ -6,7 +6,7 @@ namespace Be
     class LinearAllocator final : public MemoryAllocator, public MovableOnly
     {
     public:
-        LinearAllocator(const MemoryArena auto &arena) noexcept
+        explicit LinearAllocator(const MemoryArena auto &arena) noexcept
             : m_ptr{static_cast<byte_t *>(arena.Begin())},
               m_begin{static_cast<byte_t *>(arena.Begin())},
               m_end{static_cast<byte_t *>(arena.End())}
@@ -52,7 +52,7 @@ namespace Be
     class LinearAllocatorWaitFree final : public MemoryAllocator, public MovableOnly
     {
     public:
-        LinearAllocatorWaitFree(const MemoryArena auto &arena) noexcept
+        explicit LinearAllocatorWaitFree(const MemoryArena auto &arena) noexcept
             : m_ptr{static_cast<byte_t *>(arena.Begin())},
               m_begin{static_cast<byte_t *>(arena.Begin())},
               m_end{static_cast<byte_t *>(arena.End())}

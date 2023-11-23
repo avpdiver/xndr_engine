@@ -37,12 +37,12 @@ namespace Be
         {
         }
 
-        RefCountPtr(std::nullptr_t) noexcept : m_ptr(nullptr)
+        explicit RefCountPtr(std::nullptr_t) noexcept : m_ptr(nullptr)
         {
         }
 
         template <class U>
-        RefCountPtr(U *other) noexcept : m_ptr(other)
+        explicit RefCountPtr(U *other) noexcept : m_ptr(other)
         {
             InternalAddRef();
         }

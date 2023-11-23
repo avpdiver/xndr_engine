@@ -36,10 +36,10 @@ namespace Be::Framework::RHI
             vk::ShaderStageFlagBits::eMeshEXT,
         };
 
-    protected:
+    public:
         RhiProgram(RhiDriver &driver, const Array<RhiShaderHandle> &shaders) noexcept;
 
-    private:
+    public:
         ~RhiProgram() noexcept;
 
     public:

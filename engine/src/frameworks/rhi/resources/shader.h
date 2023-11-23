@@ -14,7 +14,7 @@ namespace Be::Framework::RHI
 
     class RhiShader final : public RhiResource
     {
-    protected:
+    public:
         RhiShader(RhiDriver &driver, const Array<uint32_t> &spirv, vk::ShaderStageFlagBits shader_stage) noexcept;
 
     public:

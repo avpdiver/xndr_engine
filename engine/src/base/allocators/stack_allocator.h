@@ -6,7 +6,7 @@ namespace Be
     class StackAllocator final : public MemoryAllocator, public MovableOnly
     {
     public:
-        StackAllocator(const MemoryArena auto &arena) noexcept
+        explicit StackAllocator(const MemoryArena auto &arena) noexcept
             : m_ptr{static_cast<byte_t *>(arena.Begin())},
               m_begin{static_cast<byte_t *>(arena.Begin())},
               m_end{static_cast<byte_t *>(arena.End())}

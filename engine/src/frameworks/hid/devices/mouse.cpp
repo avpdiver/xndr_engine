@@ -2,7 +2,7 @@
 
 #include <GLFW/glfw3.h>
 
-#define WINDOW_MOUSE(GLFW_HANDLE) ((Mouse *)(WINDOWS_DATA(GLFW_HANDLE)->hid_devices.at(HidMouseHandle.Hash())))
+#define WINDOW_MOUSE(GLFW_HANDLE) static_cast<Mouse *>(WINDOWS_DATA(GLFW_HANDLE)->hid_devices.at(HidMouseHandle.Hash()))
 
 namespace Be::Framework::HID
 {

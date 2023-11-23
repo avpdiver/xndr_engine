@@ -6,7 +6,7 @@ namespace Be
     class MallocMemoryArena final : public MovableOnly
     {
     public:
-        MallocMemoryArena(usize_t size) noexcept
+        explicit MallocMemoryArena(usize_t size) noexcept
             : m_size{size}
         {
             m_begin = malloc(m_size);

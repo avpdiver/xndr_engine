@@ -29,7 +29,7 @@ namespace Be::Framework::RHI
 
     class RhiImageView final : public RhiResourceView
     {
-    protected:
+    public:
         RhiImageView(RhiDriver &driver, const RhiImageViewDesc &view_desc) noexcept;
 
     public:

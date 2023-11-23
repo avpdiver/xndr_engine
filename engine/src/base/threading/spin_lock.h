@@ -27,7 +27,7 @@ namespace Be
     class SpinLock final : public Noncopyable
     {
     public:
-        forceinline SpinLock(SpinMutex &mutex) : m_mutex{mutex}
+        explicit forceinline SpinLock(SpinMutex &mutex) : m_mutex{mutex}
         {
             m_mutex.Lock();
         }

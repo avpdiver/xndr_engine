@@ -16,11 +16,11 @@ namespace Be
         using AlignedType = std::aligned_storage_t<ValueSize, ValueAlign>;
 
     public:
-        VirtualMemoryContainer(usize_t max_elements) noexcept
+        explicit VirtualMemoryContainer(usize_t max_elements) noexcept
+            : m_size{max_elements},
+              m_mem_size{sizeof(AlignedType) * max_elements}
         {
-            m_size = max_elements;
-            m_mem_size = sizeof(AlignedType) * max_elements;
-            m_data = (T *)Platform::AllocateVirtualMemory(m_mem_size);
+            m_data = static_cast<T *>(Platform::AllocateVirtualMemory(m_mem_size));
         }
 
         ~VirtualMemoryContainer()

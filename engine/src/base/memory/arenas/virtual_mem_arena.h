@@ -6,7 +6,7 @@ namespace Be
     class VirtualMemoryArena final : public MovableOnly
     {
     public:
-        VirtualMemoryArena(usize_t size) noexcept;
+        explicit VirtualMemoryArena(usize_t size) noexcept;
         ~VirtualMemoryArena() noexcept;
 
     public:

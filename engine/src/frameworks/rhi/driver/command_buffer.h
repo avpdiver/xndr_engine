@@ -123,7 +123,7 @@ namespace Be::Framework::RHI
 
     class RhiCommandBuffer final : public RefCounter, public Noncopyable
     {
-    protected:
+    public:
         RhiCommandBuffer(RhiDriver &driver, vk::CommandBuffer handle, ERhiQueueType type);
 
     public:

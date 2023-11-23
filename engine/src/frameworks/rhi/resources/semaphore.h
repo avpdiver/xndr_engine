@@ -5,7 +5,7 @@ namespace Be::Framework::RHI
 
     class RhiSemaphore final : public RhiResource
     {
-    protected:
+    public:
         RhiSemaphore(RhiDriver &driver) noexcept;
 
     public:

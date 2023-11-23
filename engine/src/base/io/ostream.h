@@ -22,7 +22,7 @@ namespace Be
     class FileOutputStream final : public OutputStream
     {
     public:
-        FileOutputStream(std::ofstream &ifstream) noexcept;
+        explicit FileOutputStream(std::ofstream &ifstream) noexcept;
 
     public:
         void Write(const void *const src, usize_t size) override;

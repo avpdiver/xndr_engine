@@ -37,7 +37,7 @@ namespace Be
 
         explicit constexpr Matrix(EUninitialized) noexcept {}
 
-        constexpr Matrix(const Vector<C, T> row_vecs[R]) noexcept
+        explicit constexpr Matrix(const Vector<C, T> row_vecs[R]) noexcept
         {
             for (uint8_t row = 0; row < R; ++row)
             {

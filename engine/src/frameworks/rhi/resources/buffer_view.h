@@ -16,7 +16,7 @@ namespace Be::Framework::RHI
 
     class RhiBufferView final : public RhiResourceView
     {
-    protected:
+    public:
         RhiBufferView(RhiDriver &driver, const RhiBufferViewDesc &desc) noexcept;
 
     public:

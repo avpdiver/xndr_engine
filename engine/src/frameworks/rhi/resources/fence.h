@@ -5,7 +5,7 @@ namespace Be::Framework::RHI
 
     class RhiFence final : public RhiResource
     {
-    protected:
+    public:
         RhiFence(RhiDriver &driver, uint64_t initial_value = 0) noexcept;
 
     public:

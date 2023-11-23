@@ -128,9 +128,7 @@ namespace Be::Framework::RHI
         };
 
         auto handle = m_device->VkHandle().allocateCommandBuffers(alloc_info).front();
-        auto r = new RhiCommandBuffer{*this, handle, type};
-
-        return r;
+        return MakeRefCounter<RhiCommandBuffer>(*this, handle, type);
     }
 
     RhiCommandBufferHandle RhiDriver::CreateCommandBuffer(ERhiQueueType type) noexcept
@@ -145,7 +143,7 @@ namespace Be::Framework::RHI
         {
             auto handle = pool.buffers.front();
             pool.buffers.pop_front();
-            return new RhiCommandBuffer{*this, handle, type};
+            return MakeRefCounter<RhiCommandBuffer>(*this, handle, type);
         }
 
         if (!pool.pool)
@@ -162,56 +160,49 @@ namespace Be::Framework::RHI
     {
         PROFILER_SCOPE;
 
-        auto r = new RhiSemaphore{*this};
-        return r;
+        return MakeRefCounter<RhiSemaphore>(*this);
     }
 
     RhiFenceHandle RhiDriver::CreateFence(uint64_t initial_value) noexcept
     {
         PROFILER_SCOPE;
 
-        auto r = new RhiFence{*this, initial_value};
-        return r;
+        return MakeRefCounter<RhiFence>(*this, initial_value);
     }
 
     RhiBufferHandle RhiDriver::CreateBuffer(const RhiBufferDesc &desc) noexcept
     {
         PROFILER_SCOPE;
 
-        auto r = new RhiBuffer{*this, desc};
-        return r;
+        return MakeRefCounter<RhiBuffer>(*this, desc);
     }
 
     RhiBufferViewHandle RhiDriver::CreateBufferView(const RhiBufferViewDesc &desc) noexcept
     {
         PROFILER_SCOPE;
 
-        auto r = new RhiBufferView{*this, desc};
-        return r;
+        return MakeRefCounter<RhiBufferView>(*this, desc);
     }
 
     RhiSamplerHandle RhiDriver::CreateSampler(const RhiSamplerDesc &desc) noexcept
     {
         PROFILER_SCOPE;
 
-        auto r = new RhiSampler{*this, desc};
-        return r;
+        return MakeRefCounter<RhiSampler>(*this, desc);
     }
 
     RhiImageHandle RhiDriver::CreateImage(const RhiImageDesc &desc) noexcept
     {
         PROFILER_SCOPE;
 
-        auto r = new RhiImage{*this, desc};
-        return r;
+        return MakeRefCounter<RhiImage>(*this, desc);
     }
 
     RhiImageViewHandle RhiDriver::CreateImageView(const RhiImageViewDesc &desc) noexcept
     {
         PROFILER_SCOPE;
 
-        auto r = new RhiImageView{*this, desc};
-        return r;
+        return MakeRefCounter<RhiImageView>(*this, desc);
     }
 
     void RhiDriver::AllocMemory(vk::Buffer buffer,
@@ -225,7 +216,7 @@ namespace Be::Framework::RHI
 
         VK_VERIFY(vmaAllocateMemory(
                       m_vma_allocator,
-                      (VkMemoryRequirements *)(&mem_req),
+                      reinterpret_cast<VkMemoryRequirements *>(&mem_req),
                       &alloc_create_info,
                       &allocation,
                       &allocation_info),
@@ -248,7 +239,7 @@ namespace Be::Framework::RHI
 
         VK_VERIFY(vmaAllocateMemory(
                       m_vma_allocator,
-                      (VkMemoryRequirements *)(&mem_req),
+                      reinterpret_cast<VkMemoryRequirements *>(&mem_req),
                       &alloc_create_info,
                       &allocation,
                       &allocation_info),

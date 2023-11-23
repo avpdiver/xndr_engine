@@ -64,7 +64,7 @@ namespace Be
         }
 
         // Rotation Matrix initialization
-        Quaternion(const Matrix<3, 3, T> &rot) noexcept
+        explicit Quaternion(const Matrix<3, 3, T> &rot) noexcept
         {
             uint8_t biggest_index = 0;
             T r012 = rot[0][0] - rot[1][1] - rot[2][2];
@@ -98,21 +98,25 @@ namespace Be
                 y = (rot[0][2] - rot[2][0]) * mult;
                 z = (rot[1][0] - rot[0][1]) * mult;
                 w = -biggest_val;
+                break;
             case 1:
                 x = biggest_val;
                 y = (rot[1][0] - rot[0][1]) * mult;
                 z = (rot[0][2] - rot[2][0]) * mult;
                 w = -(rot[2][1] - rot[1][2]) * mult;
+                break;
             case 2:
                 x = (rot[1][0] - rot[0][1]) * mult;
                 y = biggest_val;
                 z = (rot[2][1] - rot[1][2]) * mult;
                 w = -(rot[0][2] - rot[2][0]) * mult;
+                break;
             case 3:
                 x = (rot[0][2] - rot[2][0]) * mult;
                 y = (rot[2][1] - rot[1][2]) * mult;
                 z = biggest_val;
                 w = -(rot[1][0] - rot[0][1]) * mult;
+                break;
             }
         }
 

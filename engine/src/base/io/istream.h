@@ -24,7 +24,7 @@ namespace Be
     class ByteArrayInputStream final : public InputStream
     {
     public:
-        ByteArrayInputStream(const Data &data) noexcept
+        explicit ByteArrayInputStream(const Data &data) noexcept
             : m_data{data.data()},
               m_size{data.size_bytes()},
               m_offset{0},

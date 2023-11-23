@@ -65,7 +65,7 @@ namespace Be::Framework::RHI
             for (const auto &sb : shader->GetBindings())
             {
                 auto &b = m_bindings[sb.set][sb.binding];
-                m_binding_names[sb.name.c_str()] = {sb.set, sb.binding};
+                m_binding_names[RhiProgramBindingName{sb.name}] = {sb.set, sb.binding};
 
                 b.shader_stage |= shader->GetStage();
                 b.descriptor_type = sb.type;

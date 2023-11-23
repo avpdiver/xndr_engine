@@ -17,7 +17,7 @@ namespace Be::Framework::RHI
 
     class RhiBuffer final : public RhiMemoryResource
     {
-    protected:
+    public:
         RhiBuffer(RhiDriver &driver, const RhiBufferDesc &desc) noexcept;
 
     public:

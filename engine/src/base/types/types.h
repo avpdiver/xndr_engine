@@ -130,7 +130,6 @@ namespace Be
 }
 
 #include "base/types/clazz.h"
-#include "base/types/default_type.h"
 #include "base/types/type_traits.h"
 #include "base/types/constants.h"
 #include "base/types/hash.h"

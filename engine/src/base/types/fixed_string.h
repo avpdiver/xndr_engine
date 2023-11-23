@@ -27,12 +27,12 @@ namespace Be
         {
         }
 
-        constexpr TFixedString(const ViewType &view) noexcept
+        explicit constexpr TFixedString(const ViewType &view) noexcept
             : TFixedString{view.data(), view.length()}
         {
         }
 
-        constexpr TFixedString(const CharType *str) noexcept
+        explicit constexpr TFixedString(const CharType *str) noexcept
         {
             for (; str[m_length] && m_length < StringSize; ++m_length)
             {

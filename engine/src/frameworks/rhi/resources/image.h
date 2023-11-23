@@ -27,7 +27,7 @@ namespace Be::Framework::RHI
 
     class RhiImage final : public RhiMemoryResource
     {
-    protected:
+    public:
         RhiImage(RhiDriver &driver, const RhiImageDesc &desc) noexcept;
 
     public:

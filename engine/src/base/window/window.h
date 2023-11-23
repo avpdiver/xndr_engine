@@ -27,7 +27,7 @@ namespace Be
     class Window final : public IDevice
     {
     public:
-        Window(const WindowCreateInfo &create_info) noexcept;
+        explicit Window(const WindowCreateInfo &create_info) noexcept;
         ~Window() noexcept;
 
     public:

@@ -18,7 +18,7 @@ namespace Be
             data.fill(0);
         }
 
-        constexpr Vector(const T &rhs) noexcept
+        explicit constexpr Vector(const T &rhs) noexcept
         {
             data.fill(rhs);
         }
@@ -149,7 +149,7 @@ namespace Be
         {
         }
 
-        constexpr Vector(const T &rhs) noexcept : data{rhs, rhs}
+        explicit constexpr Vector(const T &rhs) noexcept : data{rhs, rhs}
         {
         }
 
@@ -283,7 +283,7 @@ namespace Be
         {
         }
 
-        constexpr Vector(const T &rhs) noexcept : data{rhs, rhs, rhs}
+        explicit constexpr Vector(const T &rhs) noexcept : data{rhs, rhs, rhs}
         {
         }
 
@@ -435,7 +435,7 @@ namespace Be
         {
         }
 
-        constexpr Vector(const T &rhs) noexcept : data{rhs, rhs, rhs, rhs}
+        explicit constexpr Vector(const T &rhs) noexcept : data{rhs, rhs, rhs, rhs}
         {
         }
 

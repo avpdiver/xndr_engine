@@ -16,7 +16,7 @@ namespace Be
         using Self = StdAllocatorWrapper<T, AllocatorPtrType>;
 
     public:
-        StdAllocatorWrapper(AllocatorPtrType alloc) noexcept : m_alloc{std::forward<AllocatorPtrType>(alloc)} {}
+        explicit StdAllocatorWrapper(AllocatorPtrType alloc) noexcept : m_alloc{std::forward<AllocatorPtrType>(alloc)} {}
         StdAllocatorWrapper(Self &&other) noexcept : m_alloc{std::move(other.m_alloc)} {}
         StdAllocatorWrapper(const Self &other) noexcept : m_alloc{other.m_alloc} {}
 

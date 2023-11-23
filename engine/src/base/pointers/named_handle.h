@@ -41,23 +41,23 @@ namespace Be
         {
         }
 
-        constexpr NamedHandle(HashValue hash) noexcept
+        explicit constexpr NamedHandle(HashValue hash) noexcept
             : m_hash{hash}
         {
         }
 
-        constexpr NamedHandle(StringView name) noexcept
+        explicit constexpr NamedHandle(StringView name) noexcept
             : m_hash{ConstHashOf(name.data(), name.length(), Seed)}
         {
         }
 
-        constexpr NamedHandle(const char *name) noexcept
+        explicit constexpr NamedHandle(const char *name) noexcept
             : m_hash{ConstHashOf(name, SIZE, Seed)}
         {
         }
 
         template <usize_t StringSize>
-        constexpr NamedHandle(const FixedString<StringSize> &name) noexcept
+        explicit constexpr NamedHandle(const FixedString<StringSize> &name) noexcept
             : m_hash{ConstHashOf(name.data(), std::min(SIZE, StringSize), Seed)}
         {
         }
@@ -130,31 +130,31 @@ namespace Be
         {
         }
 
-        /*implicit*/ constexpr NamedHandle(HashValue hash) noexcept
+        explicit constexpr NamedHandle(HashValue hash) noexcept
             : m_hash{hash}
         {
         }
 
-        /*implicit*/ constexpr NamedHandle(StringView name) noexcept
+        explicit constexpr NamedHandle(StringView name) noexcept
             : m_hash{ConstHashOf(name.data(), name.length(), Seed)},
               m_name{name}
         {
         }
 
-        /*implicit*/ constexpr NamedHandle(const char *name) noexcept
+        explicit constexpr NamedHandle(const char *name) noexcept
             : m_hash{ConstHashOf(name, UMax, Seed)},
               m_name{name}
         {
         }
 
         template <usize_t StrSize>
-        /*implicit*/ constexpr NamedHandle(const FixedString<StrSize> &name) noexcept
+        explicit constexpr NamedHandle(const FixedString<StrSize> &name) noexcept
             : m_hash{ConstHashOf(name.data(), name.length(), Seed)},
               m_name{name}
         {
         }
 
-        /*implicit*/ constexpr NamedHandle(const OptimizedType &other) noexcept
+        explicit constexpr NamedHandle(const OptimizedType &other) noexcept
             : m_hash{other.Hash()}
         {
         }

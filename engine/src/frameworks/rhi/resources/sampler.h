@@ -12,7 +12,7 @@ namespace Be::Framework::RHI
 
     class RhiSampler final : public RhiResource
     {
-    protected:
+    public:
         RhiSampler(RhiDriver &driver, const RhiSamplerDesc &desc) noexcept;
 
     public:

@@ -20,7 +20,7 @@ namespace Be
 
         public:
             StdTypeID() noexcept : m_value{typeid(EUnknown)} {}
-            StdTypeID(const TypeIndex &value) noexcept : m_value{value} {}
+            explicit StdTypeID(const TypeIndex &value) noexcept : m_value{value} {}
 
         public:
             [[nodiscard]] auto operator<=>(const StdTypeID &) const noexcept = default;
