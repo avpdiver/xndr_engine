@@ -135,12 +135,6 @@ namespace Be::Framework::RHI
         case ERhiResourceState::eUndefined:
             return vk::ImageLayout::eUndefined;
 
-        case ERhiResourceState::eVertexBuffer:
-        case ERhiResourceState::eUniformBuffer:
-        case ERhiResourceState::eIndexBuffer:
-            FATAL("Invalid resource state");
-            return vk::ImageLayout::eUndefined;
-
         case ERhiResourceState::eRenderTarget:
             return vk::ImageLayout::eColorAttachmentOptimal;
 
@@ -155,14 +149,6 @@ namespace Be::Framework::RHI
 
         case ERhiResourceState::eShaderResource:
             return vk::ImageLayout::eShaderReadOnlyOptimal;
-
-        case ERhiResourceState::eStreamOut:
-            FATAL("Invalid resource state");
-            return vk::ImageLayout::eUndefined;
-
-        case ERhiResourceState::eIndirectArgument:
-            FATAL("Invalid resource state");
-            return vk::ImageLayout::eUndefined;
 
         case ERhiResourceState::eCopyDest:
             return vk::ImageLayout::eTransferDstOptimal;

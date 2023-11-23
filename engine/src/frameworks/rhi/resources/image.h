@@ -5,7 +5,7 @@ namespace Be::Framework::RHI
 
     struct RhiImageDesc
     {
-        ERhiImageType type;
+        ERhiImageType type{ERhiImageType::e2D};
 
         ERhiBindFlagBits bind_flag{ERhiBindFlag::eUnknown};
         vk::Format format{vk::Format::eUndefined};

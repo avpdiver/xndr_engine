@@ -203,16 +203,10 @@ namespace Be::Framework::RHI
         {
             if (type.storage == spv::StorageClassStorageBuffer)
             {
-                auto flags = compiler.get_buffer_block_flags(resource_id);
-                bool is_readonly = flags.get(spv::DecorationNonWritable);
-                if (is_readonly)
-                {
-                    return vk::DescriptorType::eStorageBuffer;
-                }
-                else
-                {
-                    return vk::DescriptorType::eStorageBuffer;
-                }
+                auto flags = compiler.get_buffer_block_flags(resource_id);                
+                // TODO check is_readonly ???
+                // bool is_readonly = flags.get(spv::DecorationNonWritable);
+                return vk::DescriptorType::eStorageBuffer;                
             }
             else if (type.storage == spv::StorageClassPushConstant || type.storage == spv::StorageClassUniform)
             {
@@ -246,27 +240,16 @@ namespace Be::Framework::RHI
         }
         case spv::Dim::Dim2D:
         {
-            if (resource_type.image.ms)
+            // TODO check multisampling ???
+            // resource_type.image.ms
+
+            if (resource_type.image.arrayed)
             {
-                if (resource_type.image.arrayed)
-                {
-                    return vk::ImageViewType::e2DArray;
-                }
-                else
-                {
-                    return vk::ImageViewType::e2D;
-                }
+                return vk::ImageViewType::e2DArray;
             }
             else
             {
-                if (resource_type.image.arrayed)
-                {
-                    return vk::ImageViewType::e2DArray;
-                }
-                else
-                {
-                    return vk::ImageViewType::e2D;
-                }
+                return vk::ImageViewType::e2D;
             }
         }
         case spv::Dim::Dim3D:
@@ -391,7 +374,7 @@ namespace Be::Framework::RHI
         : m_blob{spirv}
     {
         PROFILER_SCOPE;
-        
+
         spirv_cross::CompilerGLSL compiler(m_blob);
 
         auto entry_points = compiler.get_entry_points_and_stages();

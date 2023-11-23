@@ -41,3 +41,7 @@ Tested on GCC 13.
 - [basisu](https://github.com/BinomialLLC/basis_universal.git)
 - [cgltf](https://github.com/jkuhlmann/cgltf.git)
 - [meshoptimizer](https://github.com/zeux/meshoptimizer)
+
+## SAST Tools
+
+[PVS-Studio](https://pvs-studio.ru/ru/pvs-studio/?utm_source=website&utm_medium=github&utm_campaign=open_source) - static analyzer for C, C++, C#, and Java code.
