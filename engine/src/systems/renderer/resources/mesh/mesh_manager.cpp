@@ -18,7 +18,7 @@ namespace Be::System::Renderer
 
         stream >> submeshes_count >> instances_count >> geometry_size;
 
-        MeshHandle mesh{new Mesh()};
+        auto mesh = MakeRefCounter<Mesh>();
 
         mesh->m_submeshes.resize(submeshes_count);
         stream.Read(mesh->m_submeshes.data(), submeshes_count * sizeof(SubMesh));

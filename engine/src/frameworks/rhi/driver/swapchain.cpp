@@ -121,7 +121,7 @@ namespace Be::Framework::RHI
         {
             auto &bb = m_back_buffers.emplace_back();
 
-            bb.image = new RhiImage(m_driver, images[i], GetFormat(), width, height);
+            bb.image = MakeRefCounter<RhiImage>(m_driver, images[i], GetFormat(), width, height);
 
             RhiImageViewDesc view_desc{
                 .image = bb.image,

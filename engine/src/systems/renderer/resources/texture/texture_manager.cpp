@@ -154,7 +154,7 @@ namespace Be::System::Renderer
         desc.height = ktx->baseHeight;
         desc.mip_levels = ktx->numLevels;
 
-        TextureHandle texture{new Texture()};
+        auto texture = MakeRefCounter<Texture>();
         texture->SetImage(m_dummy_image);
         texture->m_data.reserve(desc.mip_levels);
 
@@ -225,7 +225,7 @@ namespace Be::System::Renderer
         subres.level = 0;
 
         m_dummy_image = m_driver.CreateImage(tex_desc);
-        m_dummy_texture = new Texture();
+        m_dummy_texture = MakeRefCounter<Texture>();
         m_dummy_texture->SetImage(m_dummy_image);
     }
 

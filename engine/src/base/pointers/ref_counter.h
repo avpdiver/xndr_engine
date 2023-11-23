@@ -6,15 +6,15 @@ namespace Be
     class RefCounter
     {
     public:
-        virtual ~RefCounter() = default;
+        virtual ~RefCounter() noexcept = default;
 
     public:
-        virtual uint64_t AddRef()
+        virtual uint64_t AddRef() noexcept
         {
             return ++m_ref_count;
         }
 
-        virtual uint64_t Release()
+        virtual uint64_t Release() noexcept
         {
             uint64_t result = --m_ref_count;
             if (result == 0)
@@ -180,13 +180,13 @@ namespace Be
             return m_ptr;
         }
 
-        T **operator&()
+        T **operator&() noexcept
         {
             return &m_ptr;
         }
 
     public:
-        operator bool() const
+        operator bool() const noexcept
         {
             return (m_ptr != nullptr);
         }
@@ -227,7 +227,7 @@ namespace Be
         }
 
         // Set the pointer while keeping the object's reference count unchanged
-        void Reset(T *other)
+        void Reset(T *other) noexcept
         {
             if (m_ptr != nullptr)
             {
@@ -243,14 +243,14 @@ namespace Be
         }
 
     public:
-        static RefCountPtr<T> Create(T *other)
+        static RefCountPtr<T> Create(T *other) noexcept
         {
             RefCountPtr<T> Ptr;
             Ptr.Reset(other);
             return Ptr;
         }
 
-        uint64_t Reset()
+        uint64_t Reset() noexcept
         {
             return InternalRelease();
         }
@@ -288,7 +288,7 @@ namespace Be
     };
 
     template <typename T, typename... Args>
-        requires IsConstructible<T, Args...>
+        requires(IsBaseOf<RefCounter, T> && IsConstructible<T, Args...>)
     [[nodiscard]] forceinline RefCountPtr<T> MakeRefCounter(Args &&...args)
     {
         return RefCountPtr<T>::Create(new T(std::forward<Args>(args)...));

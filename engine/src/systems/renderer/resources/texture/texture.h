@@ -5,7 +5,7 @@ namespace Be::System::Renderer
     
     class Texture final : public RefCounter
     {
-    private:
+    public:
         Texture() noexcept = default;
 
     public:

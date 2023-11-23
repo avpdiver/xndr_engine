@@ -21,7 +21,7 @@ namespace Be::System::Renderer
 
         stream >> textures_count >> materials_count >> mesh_materials_count;
 
-        ModelHandle model{new Model()};
+        auto model = MakeRefCounter<Model>();
 
         Array<AssetName> textures_names;
         textures_names.resize(textures_count);
