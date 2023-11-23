@@ -1,0 +1,47 @@
+#version 460 core
+
+#include "include/default_exts.glsl"
+
+#extension GL_EXT_mesh_shader : require
+
+// #include "interop/mesh.h"
+
+// Set the number of threads per workgroup (always one-dimensional).
+// The limitations may be different than in actual compute shaders.
+layout(local_size_x = 1, local_size_y = 1, local_size_z = 1) in;
+
+// maximum allocation size for each meshlet
+layout(triangles, max_vertices=3, max_primitives=1) out;
+
+layout(location = 0) out vec4 out_color[];
+
+const vec4[3] positions = {
+	vec4( 0.0, -1.0, 1.0, 1.0),
+	vec4(-1.0,  1.0, 1.0, 1.0),
+	vec4( 1.0,  1.0, 1.0, 1.0)
+};
+
+const vec4[3] colors = {
+	vec4(0.0, 1.0, 0.0, 1.0),
+	vec4(0.0, 0.0, 1.0, 1.0),
+	vec4(1.0, 0.0, 0.0, 1.0)
+};
+
+void main()
+{
+    uint iid = gl_LocalInvocationID.x;
+
+	vec4 offset = vec4(0.0, 0.0, gl_GlobalInvocationID.x, 0.0);
+
+	SetMeshOutputsEXT(3, 1);
+	
+	gl_MeshVerticesEXT[0].gl_Position = (positions[0] + offset);
+	gl_MeshVerticesEXT[1].gl_Position = (positions[1] + offset);
+	gl_MeshVerticesEXT[2].gl_Position = (positions[2] + offset);
+
+	out_color[0] = colors[0];
+	out_color[1] = colors[1];
+	out_color[2] = colors[2];
+
+	gl_PrimitiveTriangleIndicesEXT[gl_LocalInvocationIndex] =  uvec3(0, 1, 2);
+}

@@ -1,0 +1,25 @@
+[Bb]in/
+[Bb]uild/
+[Ll]ogs/
+cmake-build-debug/
+
+# Visual Studio
+**/.vs/
+**/*.sln
+**/*.vcxproj
+**/*.vcxproj.filters
+**/*.vcxproj.user
+
+# Visual Code
+**/.vscode/*
+!.vscode/launch.json
+
+# Externals
+externals/
+
+# Assets
+assets/astro/ephemeris/
+assets/models/
+assets/textures/
+assets/meshes/
+*.spv
